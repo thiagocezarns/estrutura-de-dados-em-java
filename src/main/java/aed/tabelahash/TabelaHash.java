@@ -2,7 +2,7 @@ package aed.tabelahash;
 
 public class TabelaHash<K, V> {
 
-    private final HashNodo[] tabela;
+    private final HashNodo<K,V>[] tabela;
     private final int tamanho;
     private int qtdElementos;
 
@@ -48,10 +48,10 @@ public class TabelaHash<K, V> {
     }
 
 
-    private void tabelaSetHashNodo(int indice, HashNodo n) {
+    private void tabelaSetHashNodo(int indice, HashNodo<K,V> n) {
         this.tabela[indice] = n;
     }
-    private HashNodo tabelaGetHashNodo(int indice) {
+    private HashNodo<K,V> tabelaGetHashNodo(int indice) {
         return this.tabela[indice];
     }
 
@@ -65,14 +65,14 @@ public class TabelaHash<K, V> {
     }
 
     public void inserir(K chave, V valor) {
-        HashNodo novoNodo = new HashNodo(chave, valor);
+        HashNodo<K,V> novoNodo = new HashNodo<>(chave, valor);
         int indice = funcaoHash(chave);
-        HashNodo inicio = tabelaGetHashNodo(indice);
+        HashNodo<K,V> inicio = tabelaGetHashNodo(indice);
         if(inicio == null) {
             tabelaSetHashNodo(indice, novoNodo);
             incrementaQtdElementos();
         } else {
-            HashNodo antarior = inicio;
+            HashNodo<K,V> antarior = inicio;
             while(inicio != null) {
                 if(inicio.getChave().equals(chave)){
                     inicio.setValor(valor);
@@ -88,7 +88,7 @@ public class TabelaHash<K, V> {
 
     public V buscar(K chave) {
         int indice = funcaoHash(chave);
-        HashNodo aux;
+        HashNodo<K,V> aux;
         aux = tabelaGetHashNodo(indice);
         if(!(aux == null)) {
             while(aux != null) {
@@ -101,14 +101,14 @@ public class TabelaHash<K, V> {
 
     public void remover(K chave) {
         int indice = funcaoHash(chave);
-        HashNodo aux;
+        HashNodo<K,V> aux;
         aux = tabelaGetHashNodo(indice);
         if(!(aux == null)) {
             if(aux.getChave().equals(chave)) {
                 tabelaSetHashNodo(indice, aux.getProximo());
                 removeNodo(aux);
             } else {
-                HashNodo anterior = aux;
+                HashNodo<K,V> anterior = aux;
                 while (aux != null) {
                     if (aux.getChave().equals(chave)) {
                         anterior.setProximo(aux.getProximo());
@@ -123,8 +123,8 @@ public class TabelaHash<K, V> {
 
     public void limpar() {
         for(int i=0; i<tamanho(); i++){
-            HashNodo aux = tabelaGetHashNodo(i);
-            HashNodo aux2 = aux;
+            HashNodo<K,V> aux = tabelaGetHashNodo(i);
+            HashNodo<K,V> aux2 = aux;
             while(aux != null) {
                 aux = aux.getProximo();
                 removeNodo(aux2);
@@ -134,7 +134,7 @@ public class TabelaHash<K, V> {
         }
     }
 
-    private void removeNodo(HashNodo n) {
+    private void removeNodo(HashNodo<K,V> n) {
         n.setChave(null);
         n.setValor(null);
         n.setProximo(null);
@@ -143,7 +143,7 @@ public class TabelaHash<K, V> {
 
     public boolean contemChave(K chave) {
         int indice = funcaoHash(chave);
-        HashNodo aux;
+        HashNodo<K,V> aux;
         aux = tabelaGetHashNodo(indice);
         if(aux != null) {
             while(aux != null) {
@@ -161,16 +161,14 @@ public class TabelaHash<K, V> {
 
     @Override
     public String toString() {
-        String s = "Tabela Hash";
+        StringBuilder s = new StringBuilder("Tabela Hash");
         for(int i=0; i<tamanho(); i++) {
-            //s += "\nindice:"+i+" {";
-            HashNodo aux = tabelaGetHashNodo(i);
+            HashNodo<K,V> aux = tabelaGetHashNodo(i);
             while(aux != null) {
-                s+="\n["+aux.getValor()+"]";
+                s.append("\n[").append(aux.getValor()).append("]");
                 aux = aux.getProximo();
             }
-            //s+="}";
         }
-        return s;
+        return s.toString();
     }
 }
