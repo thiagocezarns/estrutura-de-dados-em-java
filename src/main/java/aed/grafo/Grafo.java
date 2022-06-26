@@ -8,7 +8,7 @@ public class Grafo<T> {
     private List<Vertice<T>> vertices;
     private List<Aresta<T>> arestas;
 
-    Grafo() {
+    public Grafo() {
         setVertices(new ArrayList());
         setArestas(new ArrayList());
     }
