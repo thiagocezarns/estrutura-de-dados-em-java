@@ -1,6 +1,6 @@
 package aed.grafo;
 
-class Aresta<T> {
+public class Aresta<T> {
 
     private Vertice<T> verticeOrigem;
     private Vertice<T> verticeDestino;

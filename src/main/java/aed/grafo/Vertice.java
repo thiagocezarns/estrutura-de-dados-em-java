@@ -3,7 +3,7 @@ package aed.grafo;
 import java.util.List;
 import java.util.ArrayList;
 
-class Vertice<T> {
+public class Vertice<T> {
 
     private T valor;
     private boolean visitado;
