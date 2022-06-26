@@ -2,7 +2,7 @@ package aed.trie;
 
 class No<T>{
     T valor;
-    No[] filhos;
+    No<T>[] filhos;
 
     No(int tamanho) {
         filhos = new No[tamanho];
@@ -18,11 +18,11 @@ class No<T>{
         this.valor = valor;
     }
 
-    public No[] getFilhos() {
+    public No<T>[] getFilhos() {
         return filhos;
     }
 
-    public void setFilhos(No[] filhos) {
+    public void setFilhos(No<T>[] filhos) {
         this.filhos = filhos;
     }
 

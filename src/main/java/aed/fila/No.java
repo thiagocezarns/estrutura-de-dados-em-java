@@ -1,6 +1,6 @@
 package aed.fila;
 
-public class No<T> {
+class No<T> {
     private No<T> noProximo;
     private T conteudo;
 

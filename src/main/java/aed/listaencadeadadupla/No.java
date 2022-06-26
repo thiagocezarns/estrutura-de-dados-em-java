@@ -1,7 +1,7 @@
 package aed.listaencadeadadupla;
 
 
-public class No<T extends Comparable<T>> {
+class No<T extends Comparable<T>> {
     private No<T> noProximo;
     private No<T> noAnterior;
     private T conteudo;

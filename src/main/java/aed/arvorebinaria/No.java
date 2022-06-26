@@ -1,6 +1,6 @@
 package aed.arvorebinaria;
 
-public class No<T extends Comparable<T>> {
+class No<T extends Comparable<T>> {
 
     private No<T> noEsquerdo;
     private No<T> noDireito;
