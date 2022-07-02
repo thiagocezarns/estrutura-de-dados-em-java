@@ -1,29 +1,28 @@
-package aed.grafo;
+package aed.Grafo;
 
 public class Aresta<T> {
+    private Vertice<T> verticeVOrigem;
+    private Vertice<T> verticeVDestino;
 
-    private Vertice<T> verticeOrigem;
-    private Vertice<T> verticeDestino;
-
-    Aresta(Vertice<T> a, Vertice<T> b) {
+    public Aresta(Vertice<T> a, Vertice<T> b) {
         setVerticeOrigem(a);
         setVerticeDestino(b);
     }
 
     public Vertice<T> getVerticeOrigem() {
-        return this.verticeOrigem;
+        return this.verticeVOrigem;
     }
 
     public void setVerticeOrigem(Vertice<T> v) {
-        this.verticeOrigem = v;
+        this.verticeVOrigem = v;
     }
 
     public Vertice<T> getVerticeDestino() {
-        return this.verticeDestino;
+        return this.verticeVDestino;
     }
 
     public void setVerticeDestino(Vertice<T> v) {
-        this.verticeDestino = v;
+        this.verticeVDestino = v;
     }
 
 }

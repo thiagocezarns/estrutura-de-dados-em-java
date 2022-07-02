@@ -1,7 +1,7 @@
-package aed.grafo;
+package aed.Grafo;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertice<T> {
 
@@ -11,11 +11,11 @@ public class Vertice<T> {
 
     private List<Aresta<T>> adjacentes;
 
-    Vertice(T v) {
+    public Vertice(T v) {
         setValor(v);
         setVisitado(false);
         setCor("");
-        setAdjacentes(new ArrayList());
+        setAdjacentes(new ArrayList<>());
     }
 
     public T getValor() {

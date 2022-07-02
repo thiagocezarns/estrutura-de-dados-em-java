@@ -1,4 +1,4 @@
-package aed.grafo;
+package aed.Grafo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +8,9 @@ public class Grafo<T> {
     private List<Vertice<T>> vertices;
     private List<Aresta<T>> arestas;
 
-    Grafo() {
-        setVertices(new ArrayList());
-        setArestas(new ArrayList());
+    public Grafo() {
+        setVertices(new ArrayList<>());
+        setArestas(new ArrayList<>());
     }
 
     public void setVertices(List<Vertice<T>> v) {
@@ -38,6 +38,7 @@ public class Grafo<T> {
     public Aresta<T> addAresta(Vertice<T> origem, Vertice<T> destino) {
         Aresta<T> aresta = new Aresta<>(origem, destino);
         origem.addAdjacente(aresta);
+        destino.addAdjacente(aresta);
         getArestas().add(aresta);
         return aresta;
     }
@@ -49,8 +50,12 @@ public class Grafo<T> {
         for (Vertice<T> origem : getVertices()) {
             res += origem.getValor() + " >>> ";
             virgula = false;
-            for (Aresta<T> destino : origem.getAdjacentes()) {
-                Vertice<T> v = destino.getVerticeDestino();
+            for (Aresta<T> aresta : origem.getAdjacentes()) {
+                Vertice<T> v;
+                if(aresta.getVerticeDestino() == origem)
+                    v = aresta.getVerticeOrigem();
+                else
+                    v = aresta.getVerticeDestino();
                 res += (virgula ? ", " : "") + v.getValor();
                 virgula = true;
             }
@@ -58,4 +63,5 @@ public class Grafo<T> {
         }
         return res;
     }
+
 }
